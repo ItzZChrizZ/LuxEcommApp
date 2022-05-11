@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="352.692" height="352.692" viewBox="0 0 352.692 352.692">
+  <defs>
+    <filter id="LuX" x="97.5" y="122.5" width="158" height="117" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-opacity="0.369"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_3" data-name="Group 3" transform="translate(492 -105)">
+    <g id="Rectangle_3" data-name="Rectangle 3" transform="translate(-293.997 106) rotate(52)" fill="none" stroke="#35323c" stroke-width="1">
+      <rect width="250" height="250" stroke="none"/>
+      <rect x="0.5" y="0.5" width="249" height="249" fill="none"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -492, 105)" filter="url(#LuX)">
+      <text id="LuX-2" data-name="LuX" transform="translate(105 209)" fill="#35323c" font-size="85" font-family="Lato-Regular, Lato"><tspan x="0" y="0">LuX</tspan></text>
+    </g>
+    <g id="Rectangle_4" data-name="Rectangle 4" transform="matrix(0.755, 0.656, -0.656, 0.755, -327.985, 105)" fill="none" stroke="#35323c" stroke-width="1">
+      <rect width="250" height="250" stroke="none"/>
+      <rect x="0.5" y="0.5" width="249" height="249" fill="none"/>
+    </g>
+  </g>
+</svg>

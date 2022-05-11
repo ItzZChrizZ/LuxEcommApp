@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "380021921330",
+    "project_id": "luxappv2",
+    "storage_bucket": "luxappv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380021921330:android:b00636790bddf456c50e2b",
+        "android_client_info": {
+          "package_name": "com.example.luxappv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380021921330-nlt3ap196hj9a6vnap2sg0nnevgsofo3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4UxmIobkJ_qMuTIpoeEjZFkgqN8Qn368"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380021921330-nlt3ap196hj9a6vnap2sg0nnevgsofo3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
