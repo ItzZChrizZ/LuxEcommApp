@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:luxappv2/constrats.dart';
 
-class CustomActionBar extends StatelessWidget {
+class CustomActionBar extends StatefulWidget {
   final String title;
   final bool hasBackArrow;
   final bool? hasTittle;
@@ -17,14 +17,19 @@ class CustomActionBar extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<CustomActionBar> createState() => _CustomActionBarState();
+}
+
+class _CustomActionBarState extends State<CustomActionBar> {
+  final CollectionReference _userRef =
+      FirebaseFirestore.instance.collection("Users");
+
+  final User? _user = FirebaseAuth.instance.currentUser;
+
+  @override
   Widget build(BuildContext context) {
-    bool _hasBackArrow = hasBackArrow;
-    bool? _hasTitle = hasTittle ?? true;
-
-    final CollectionReference _userRef =
-        FirebaseFirestore.instance.collection("Users");
-
-    User? _user = FirebaseAuth.instance.currentUser;
+    bool _hasBackArrow = widget.hasBackArrow;
+    bool? _hasTitle = widget.hasTittle ?? true;
 
     return SafeArea(
       child: Container(
@@ -62,7 +67,7 @@ class CustomActionBar extends StatelessWidget {
               ),
             if (_hasTitle)
               Text(
-                title,
+                widget.title,
                 style: Constants.boldHeading,
               ),
             Container(

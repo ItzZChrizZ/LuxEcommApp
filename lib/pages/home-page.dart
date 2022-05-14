@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
-          const CustomActionBar(
+           const CustomActionBar(
             hasBackArrow: false,
             title: 'Lux',
           ),

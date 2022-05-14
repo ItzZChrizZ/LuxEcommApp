@@ -61,6 +61,8 @@ class _ProductPageState extends State<ProductPage> {
                   List imageList = docData['images'];
                   List productSize = docData['size'];
 
+                  _selectedProductSize = productSize[0];
+
                   return ListView(
                     padding: const EdgeInsets.only(
                       bottom: 20.0,
@@ -172,7 +174,7 @@ class _ProductPageState extends State<ProductPage> {
                 );
               },
             ),
-            const CustomActionBar(title: "", hasBackArrow: true),
+             const CustomActionBar(title: "", hasBackArrow: true),
           ],
         ),
       ),

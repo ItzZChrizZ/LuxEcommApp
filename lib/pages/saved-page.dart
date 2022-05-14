@@ -15,7 +15,7 @@ class SavedPage extends StatelessWidget {
             child: Text("My Favorites"),
           ),
           Container(
-            child: const CustomActionBar(
+            child:  const CustomActionBar(
               hasBackArrow: false,
               title: 'My Favorites',
             ),
