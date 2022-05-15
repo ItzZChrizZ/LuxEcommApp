@@ -34,3 +34,13 @@ class Constants {
     color: Colors.white,
   );
 }
+
+List accountList = [
+  "Account Details",
+  "Loyalty card & offers",
+  "Notifications",
+  "Delivery Information",
+  "Payment Information",
+  "Language",
+  "Privacy Settings"
+];

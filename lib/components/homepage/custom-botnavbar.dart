@@ -58,7 +58,7 @@ class _GetBottomNavBarState extends State<GetBottomNavBar> {
             ),
             BottomTabBtn(
               selected: _selectedTab == 3 ? true : false,
-              imagePath: 'assets/icons/logout.png',
+              imagePath: 'assets/icons/user.png',
               onPressed: () {
                 widget.tabPressed!(3);
               },
