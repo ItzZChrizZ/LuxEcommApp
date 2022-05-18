@@ -1,11 +1,11 @@
 // ignore_for_file: file_names, deprecated_member_use
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:luxappv2/components/productpage/image-swiper.dart';
 import 'package:luxappv2/components/productpage/product-size.dart';
 import 'package:luxappv2/components/widgets/custom-actionbar.dart';
+import 'package:luxappv2/services/firebase_services.dart';
 
 import '../constrats.dart';
 
@@ -18,26 +18,34 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  final CollectionReference _productRef =
-      FirebaseFirestore.instance.collection("products");
+  final FirebaseServices _firebaseServices = FirebaseServices();
 
-  final CollectionReference _userRef =
-      FirebaseFirestore.instance.collection("Users");
 
-  final User? _user = FirebaseAuth.instance.currentUser;
+
+  
 
   String _selectedProductSize = "0";
 
   Future _addCart() {
-    return _userRef
-        .doc(_user?.uid)
+    return _firebaseServices.userRef
+        .doc(_firebaseServices.getUserId())
         .collection("Cart")
+        .doc(widget.productId)
+        .set({"size": _selectedProductSize});
+  }
+  Future _addSaved() {
+    return _firebaseServices.userRef
+        .doc(_firebaseServices.getUserId())
+        .collection("Saved")
         .doc(widget.productId)
         .set({"size": _selectedProductSize});
   }
 
   final SnackBar _snackBar =
       const SnackBar(content: Text("Product Added to Cart"));
+
+  final SnackBar _snackBarSaved =
+      const SnackBar(content: Text("Product Added to Saved"));
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +54,7 @@ class _ProductPageState extends State<ProductPage> {
         child: Stack(
           children: [
             FutureBuilder(
-              future: _productRef.doc(widget.productId).get(),
+              future: _firebaseServices.productRef.doc(widget.productId).get(),
               builder: (context, productSnapshot) {
                 if (productSnapshot.hasError) {
                   return Scaffold(
@@ -122,18 +130,24 @@ class _ProductPageState extends State<ProductPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              alignment: Alignment.center,
-                              height: 60.0,
-                              width: 60.0,
-                              child: const Image(
-                                height: 25.0,
-                                image: AssetImage(
-                                  "assets/icons/ribbon.png",
+                            GestureDetector(
+                              onTap: (() async {
+                                  _addSaved();
+                                  Scaffold.of(context).showSnackBar(_snackBarSaved);
+                                }),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                alignment: Alignment.center,
+                                height: 60.0,
+                                width: 60.0,
+                                child: const Image(
+                                  height: 25.0,
+                                  image: AssetImage(
+                                    "assets/icons/ribbon.png",
+                                  ),
                                 ),
                               ),
                             ),
@@ -174,7 +188,7 @@ class _ProductPageState extends State<ProductPage> {
                 );
               },
             ),
-             const CustomActionBar(title: "", hasBackArrow: true),
+            const CustomActionBar(title: "", hasBackArrow: true),
           ],
         ),
       ),

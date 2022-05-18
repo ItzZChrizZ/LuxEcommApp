@@ -10,8 +10,6 @@ import 'package:luxappv2/pages/login-page.dart';
 import 'package:luxappv2/pages/saved-page.dart';
 import 'package:luxappv2/pages/search-page.dart';
 
-
-
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -65,7 +63,7 @@ class _MainPageState extends State<MainPage> {
       children: [
         const HomePage(),
         const SearchPage(),
-        const SavedPage(),
+        SavedPage(),
         StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, streamSnapshot) {

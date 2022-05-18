@@ -1,9 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:luxappv2/constrats.dart';
+import 'package:luxappv2/pages/cart-page.dart';
+import 'package:luxappv2/services/firebase_services.dart';
 
 class CustomActionBar extends StatefulWidget {
   final String title;
@@ -24,7 +25,7 @@ class _CustomActionBarState extends State<CustomActionBar> {
   final CollectionReference _userRef =
       FirebaseFirestore.instance.collection("Users");
 
-  final User? _user = FirebaseAuth.instance.currentUser;
+  final FirebaseServices _firebaseServices = FirebaseServices();
 
   @override
   Widget build(BuildContext context) {
@@ -70,30 +71,42 @@ class _CustomActionBarState extends State<CustomActionBar> {
                 widget.title,
                 style: Constants.boldHeading,
               ),
-            Container(
-              width: 42.0,
-              height: 42.0,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
-                child: StreamBuilder(
-                  stream:
-                      _userRef.doc(_user?.uid).collection("Cart").snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    int _totalItems = 0;
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CartPage(),
+                  ),
+                );
+              },
+              child: Container(
+                width: 42.0,
+                height: 42.0,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Center(
+                  child: StreamBuilder(
+                    stream: _userRef
+                        .doc(_firebaseServices.getUserId())
+                        .collection("Cart")
+                        .snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      int _totalItems = 0;
 
-                    if (snapshot.connectionState == ConnectionState.active) {
-                      List? _documents = snapshot.data!.docs;
-                      _totalItems = _documents!.length;
-                    }
+                      if (snapshot.connectionState == ConnectionState.active) {
+                        List? _documents = snapshot.data!.docs;
+                        _totalItems = _documents!.length;
+                      }
 
-                    return Text(
-                      "$_totalItems",
-                      style: Constants.boxNumbers,
-                    );
-                  },
+                      return Text(
+                        "$_totalItems",
+                        style: Constants.boxNumbers,
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
