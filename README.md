@@ -17,3 +17,6 @@ All connected with Firebase , Firebase Auth active and all files are stored in F
 ![Screen Shot 2022-05-19 at 22 40 22](https://user-images.githubusercontent.com/73915411/169391379-30bb9e9f-e98b-4188-8473-82ca94de3ed8.png)
 ![Screen Shot 2022-05-19 at 22 40 36](https://user-images.githubusercontent.com/73915411/169391388-c097cdb6-39d0-46e2-be8d-955f116a6348.png)
 ![Screen Shot 2022-05-19 at 22 40 47](https://user-images.githubusercontent.com/73915411/169391393-c980c7bc-8fa6-40c1-a055-97ccbccd96fe.png)
+
+
+Old ver. is here https://github.com/ItzZChrizZ/LuxApp-old-ver.
